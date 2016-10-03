@@ -1,0 +1,5 @@
+.jumbotron{
+	background-size:cover;
+	background-position:50%; 
+	background-image: url(../img/bannerprint.jpg);
+}
