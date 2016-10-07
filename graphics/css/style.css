@@ -2,3 +2,8 @@
 	background-size:cover; 
 	background-image: url(../img/graphicsbanner.jpg);
 }
+.carousel-caption a:hover{
+	text-decoration:none;
+	color:#6de6ff !important;
+
+}
