@@ -10,7 +10,7 @@ body{
 
 h1,h2,h3,h4{
 	font-family:'David Libre', serif;
-	margin-top:40px;
+	margin-top:80px;
 	color:#00D4FF;
 	text-shadow:1px 1px 1px #000;
 }
@@ -18,13 +18,17 @@ h4{
 	font-size:3rem;
 	text-shadow:1px 1px 1px #444;
 }
-p{
+p,a{
 	font-family:'Lato', sans-serif;
 	font-size:2rem;
 	line-height:4rem; 
 }
 a{
 	font-weight:bold;
+	margin-top:20px;
+}
+.block{
+	display:block;
 }
 img,.carousel{
 	border-radius:5px;
@@ -37,6 +41,7 @@ img,.carousel{
 .btn{
 	padding:10px 10px 10px 10px;
 	font-size:2rem;
+	box-shadow:0px 2px 5px #bbb;
 }
 .menu .btn{
 	display:block;
