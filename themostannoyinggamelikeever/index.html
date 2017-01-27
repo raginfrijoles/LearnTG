@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+<title>Processing Test</title>
+</head>
+<body>
+  <div id = "start">
+    <h1><b>The Most Annoying Game, Like, Ever</b></h1>
+    <p>Click the circle to make it disappear.</p>
+    <p>The fewer times you click, the better.</p>
+    <p>Press Enter to Begin.</p>
+    <p class = "tip">Try not to shoot your brains out.</p>
+  </div>
+  <div>
+      <p id = "score">0</p>
+  </div>
+  <div id = "win">
+    <h1><b>CONGRATULATIONS!</b></h1>
+    <h2 id = "finalscore"></h2>
+    <p>You may now regain your sanity.</p>
+    <p>Press 'R' to fall back into insanity.</p>
+  </div>
+
+</body>
+<script src="js/p5.min.js"></script>
+<script src="js/p5.sound.js"></script>
+<script>
+// Global variables
+var radius = 50.0;
+var ogradius = 0;
+var X, Y;
+var accel = 0;
+var down = true;
+var up = false;
+var right = true;
+var left = false;
+var gravity = 1;
+var horiz = 1;
+var clicks = 0;
+var gameover = false;
+var start = false;
+var cr = 50;
+var cg = 50;
+var cb = 50;
+
+// Setup the Processing Canvas
+
+function preload() {
+  mySound = loadSound('assets/ouch2.mp3');
+  death = loadSound('assets/death.mp3');
+}
+
+function setup(){
+  mySound.setVolume(0.1);
+  ogradius = radius;
+  createCanvas(windowWidth, windowHeight);
+  strokeWeight(0); 
+  frameRate( 60 );
+  X = width / 2;
+  Y = height / 2;
+  nX = X;
+  nY = Y;
+  fill( 50, 50, 50 );
+  circlecolor = fill( 255, 50, 50 );
+  textAlign(CENTER); 
+}
+
+// Main draw loop
+function draw(){
+  if(up){
+    Y -= round(gravity+(gravity*accel));
+    //console.log(Y);
+  }
+  else if(down){
+    Y += round(gravity+(gravity*accel));
+    //console.log("down");
+  }
+  if(left){
+    X -= round(horiz+(horiz*accel));
+  }
+  else if(right){
+    X += round(horiz+(horiz*accel));
+  }
+
+  if(Y+((radius/2)+1) >= windowHeight){
+    accel = 0;
+    horiz = random(0.5,3);
+    gravity = random(0.5,3);
+    Y -= round(gravity+(gravity*accel));
+    gravityReset();
+    up = true;
+  }
+
+   else if(Y-((radius/2)+1) <= 0){
+    accel = 0;
+    horiz = random(0.5,3);
+    gravity = random(0.5,3);
+    Y += round(gravity+(gravity*accel));
+    gravityReset();
+    down = true;
+  }
+  if(X+((radius/2)+1)>=windowWidth){
+    accel = 0;
+    horiz = random(0.5,3);
+    gravity = random(0.5,3);
+    X -= round(horiz+(horiz*accel));
+    gravityReset2();
+    left = true;
+  }
+  else if(X-((radius/2)+1)<=0){
+    accel = 0;
+    horiz = random(0.5,3);
+    gravity = random(0.5,3);
+    X += round(horiz+(horiz*accel));
+    gravityReset2();
+    right = true;
+  }
+
+  accel += 0.1;
+
+  background(255);
+  fill(cr,cg,cb);
+  ellipse(X, Y, radius, radius);
+  fill( 50, 50, 50 );        
+}
+
+
+
+function mousePressed() {
+  if(start){
+  if(gameover){
+    if(mouseX < (X +(radius/1.5)) && mouseX > (X -(radius/1.5)) && mouseY < (Y + (radius/1.5)) && mouseY > (Y-(radius/1.5))){
+    horiz = random(0.5,3);
+    gravity = random(0.5,3);
+    cr = random(220);
+    cg = random(220);
+    cb = random(220); 
+    mySound.play();
+  }
+  }
+  else{
+    clicks ++;
+    document.getElementById("score").innerHTML = clicks;
+  if(mouseX < (X +(radius/1.5)) && mouseX > (X -(radius/1.5)) && mouseY < (Y + (radius/1.5)) && mouseY > (Y-(radius/1.5))){
+    console.log("working");
+    horiz = random(0.5,3);
+    gravity = random(0.5,3);
+    cr = random(220);
+    cg = random(220);
+    cb = random(220); 
+    radius -= (ogradius/10);
+    mySound.play();
+  }
+  if(radius <= 0){
+    gameover = true;
+    document.getElementById("finalscore").innerHTML = "Your final score is: " + clicks;
+    var winscreen = document.getElementById('win');
+    winscreen.style.display = 'block'; //or
+    winscreen.style.visibility = 'visible';
+    death.play();
+  }
+}
+  // prevent default
+  return false;
+}
+else{
+  return;
+}
+}
+function keyPressed() {
+  if (keyCode === 82) {
+    gameover = false;
+    score = 0;
+    clicks = 0;
+    radius = ogradius;
+    document.getElementById("score").innerHTML = clicks;
+    var winscreen = document.getElementById('win');
+    winscreen.style.display = 'none'; //or
+    winscreen.style.visibility = 'hidden';
+  }
+  else if (keyCode === 13) {
+    start = true;
+    var startscreen = document.getElementById('start');
+    startscreen.style.display = 'none'; //or
+    startscreen.style.visibility = 'hidden';
+  }
+}
+
+function gravityReset(){
+  up = false;
+  down = false;
+}
+function gravityReset2(){
+  left = false;
+  right = false;
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</script>  
+</html>
