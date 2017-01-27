@@ -3,3 +3,6 @@
 	background-position:50%; 
 	background-image: url(../img/bannerprint.jpg);
 }
+iframe{
+	width:90%;
+}

@@ -10,7 +10,7 @@ body{
 
 h1,h2,h3,h4{
 	font-family:'David Libre', serif;
-	margin-top:40px;
+	margin-top:50px;
 	color:#00D4FF;
 	text-shadow:1px 1px 1px #000;
 }
@@ -18,7 +18,7 @@ h4{
 	font-size:3rem;
 	text-shadow:1px 1px 1px #444;
 }
-p{
+p,a{
 	font-family:'Lato', sans-serif;
 	font-size:2rem;
 	line-height:4rem; 
@@ -26,9 +26,15 @@ p{
 a{
 	font-weight:bold;
 }
+.contact a{
+	font-size:1em;
+}
+.block{
+	display:block;
+	margin-top:20px !important;
+}
 img,.carousel{
-	border-radius:5px;
-	box-shadow:0px 0px 15px #bbb;
+	box-shadow:0px 0px 5px #bbb;
 }
 .margin-lr-auto{
 	margin-left:auto;
@@ -37,6 +43,7 @@ img,.carousel{
 .btn{
 	padding:10px 10px 10px 10px;
 	font-size:2rem;
+	box-shadow:0px 2px 5px #bbb;
 }
 .menu .btn{
 	display:block;
@@ -45,6 +52,7 @@ img,.carousel{
 	box-shadow:0px 2px 5px #bbb;
 }
 .menu{
+	display:none;
 	position:fixed;
 	left:0;
 	width:100%;
@@ -67,10 +75,13 @@ img,.carousel{
 .jumbotron{
 	background-size:cover; 
 	background-image:url(../img/jumbotron.jpg);
-	box-shadow:0px 2px 5px #bbb;
+	box-shadow:inset 0px 0px 5px #333;
+	padding-top:5%;
+	padding-bottom:5%;
 }
-.jumbotron h1{
-	margin-top:5%;
+.jumbotron h1,h2,h3,h4,h5,h6{
+	margin-top:30px;
+	margin-bottom:30px;
 }
 .jumbotron h1, .jumbotron h3{
 	color:#fff;
@@ -91,19 +102,19 @@ img,.carousel{
 	position:fixed;
 	top:50%;
 	left:50%;
-	margin:-200px -150px 0;
+	margin:-250px -150px 0;
 	width:300px;
-	height:400px;
+	height:500px;
 	border-radius:4px;
 	text-align:center;
 }
-.glyphicon-th-large,.glyphicon-remove-sign{
+.glyphicon-th-large,.glyphicon-remove-sign,.glyphicon-menu-right,.glyphicon-menu-left{
 	font-size:30px;
 	color:#00D4FF;
 	text-shadow:0px 1px 1px #000;
 	cursor:pointer;
 }
-.glyphicon-th-large:hover,.glyphicon-remove-sign:hover{
+.glyphicon-th-large:hover,.glyphicon-remove-sign:hover,.glyphicon-menu-right,.glyphicon-menu-left{
 	color:#66e6ff;
 }
 .menfixed{
@@ -157,6 +168,25 @@ img,.carousel{
 	-webkit-animation-name: spin;
     animation-name: spin;
 }
+.embed-responsive{
+	margin-top:30px;
+	box-shadow:0px 0px 5px #bbb;
+}
+.lesson-menu{
+	position:relative;
+	display:block;
+	margin:30px auto 0px auto;
+	width:150px;
+}
+.lesson-menu-row{
+	padding:0;
+}
+.next-button{
+	display:inline-block;
+	position:relative;
+	width:50px;
+	margin:30px auto auto auto;
+}
 #contactlink{
 	color:white;
 	margin:0px 10px 0px 0px;
@@ -167,6 +197,10 @@ img,.carousel{
 #menopen{
 	z-index:1;
 }
+#dropdownMenuTAT2{
+	width:150px;
+}
+
 @keyframes extend{
 	from{
 		width:50px;
